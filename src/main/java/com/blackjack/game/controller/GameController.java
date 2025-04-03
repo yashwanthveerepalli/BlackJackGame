@@ -63,7 +63,7 @@ public class GameController {
         System.out.println("User found: " + user);
 
         // Validate the bet amount
-        if (betAmount <= 0 || betAmount > 30) {
+        if (betAmount <= 0 || betAmount > 50) {
             System.out.println("Error: Invalid bet amount: " + betAmount);
             return ResponseEntity.badRequest().body(null); // Invalid bet amount
         }
@@ -162,7 +162,7 @@ public class GameController {
 
             // Add winnings (includes the original bet amount back to balance)
             user.setBalance(user.getBalance() + winnings);
-        } else if (result.contains("Dealer Wins!") || result.contains("It's a Tie!")) {
+        } else if (result.contains("Dealer Wins!")) {
             // Loss: The bet amount has already been deducted during the start of the game
             winnings = 0; // Nothing is added back for a loss
         } else if (result.contains("Tie")) {
